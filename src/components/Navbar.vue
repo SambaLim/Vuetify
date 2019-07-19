@@ -10,12 +10,12 @@
             <v-menu offset-y>
                 <v-btn flat slot="activator" color="grey">
                     <v-icon left>expand_more</v-icon>
-                    <span>Menu</span>
+                    <span>Site Links</span>
                 </v-btn>
                 <v-list>
-                    <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
+                    <v-list-tile v-for="site in sites" :key="site.text" @click="goPage(site.url)">
                         <v-list-tile-title>
-                            {{ link.text }}
+                            {{ site.text }}
                         </v-list-tile-title>
                     </v-list-tile>
                 </v-list>
@@ -59,7 +59,16 @@ export default {
                 { icon: 'dashboard', text: 'Home', route: '/' },
                 { icon: 'folder', text: 'My Projects', route: '/projects' },
                 { icon: 'person', text: 'Team', route: '/team' },
+            ],
+            sites: [
+                { icon: 'info', text: 'Wavus Site', url: 'http://www.wavus.co.kr/kr/' },
+                { icon: 'important_devices', text: 'Dev Wavus', url: 'http://dev.wavus.co.kr:12000/' }
             ]
+        }
+    },
+    methods: {
+        goPage: function(url) {
+            location.href = url;
         }
     }
 }
