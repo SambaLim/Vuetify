@@ -8,7 +8,9 @@
         <v-flex xs12 sm6 md4 lg3 v-for="person in team" :key="person.name">
           <v-card flat class="text-xs-center ma-3">
             <v-responsive class="pt-4">
-              image goes here
+              <v-avatar size="100" class="grey lighten-2">
+                <img :src="person.avatar">
+              </v-avatar>
             </v-responsive>
             <v-card-text>
               <div class="subheading">{{ person.name }}</div>
@@ -16,8 +18,8 @@
             </v-card-text>
             <v-card-actions>
               <v-btn flat color="grey">
-                <v-icon small left>message</v-icon>
-                <span>message</span>
+                <v-icon small left>call</v-icon>
+                <span>{{ person.call }}</span>
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -34,7 +36,7 @@ export default {
   data() {
     return {
       team: [
-        { name: 'Samba', role: 'Web Developer' },
+        { name: 'Samba', role: 'Web Developer', call:'010-3615-5931', avatar: 'https://i.imgur.com/riNKWY3.png' },
       ],
     }
   }
