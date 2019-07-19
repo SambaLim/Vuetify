@@ -13,8 +13,8 @@
             </v-btn>
         </v-toolbar>
 
-        <v-navigation-drawer app v-model="drawer" class="indigo">
-            <p>test</p>
+        <v-navigation-drawer app v-model="drawer" class="grey darken-3">
+            <p class="white--text">test</p>
 
         </v-navigation-drawer>
     </nav>
