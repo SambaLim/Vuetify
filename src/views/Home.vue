@@ -51,7 +51,7 @@ export default {
     return {
       projects: [
         { title: 'Select Cube Solid', person: 'Samba', due: '2019-07-18', status: 'complete', content: 'Create Select Cube Solid and get Event in CesiumJS'},
-        { title: 'Enviroment Settings', person: 'Samba', due: '2019-07-18', status: 'ongoing', content: 'Enviroment Settings for 3DS'},
+        { title: 'Enviroment Settings', person: 'Samba', due: '2019-07-22', status: 'ongoing', content: 'Enviroment Settings for 3DS'},
         { title: 'Get Mouse Event in ThreeJS', person: 'Samba', due: '2019-07-22', status: 'overdue', content: 'Get Mouse Event in ThreeJS'},
         { title: 'Draw Vworld 3D Data', person: 'Samba', due: '2019-07-26', status: 'ongoing', content: 'Draw Vworld 3D Data with CesiumJS or ThreeJS'},
         { title: '3D Data Grouping', person: 'Samba', due: '2019-07-26', status: 'ongoing', content: '3D Data Grouping in CesiumJS and ThreeJS'},
