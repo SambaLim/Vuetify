@@ -1,4 +1,10 @@
-# lim-3ds
+# Vuetify
+
+```
+DB : Firestore
+Back-End : Firebase
+Front-End : Vue & Vuetify
+```
 
 ## Project setup
 ```
