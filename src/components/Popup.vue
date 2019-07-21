@@ -21,6 +21,8 @@
     </v-dialog>
 </template>
 <script>
+import db from '@/fb'
+
 export default {
     data() {
         return {
@@ -35,7 +37,17 @@ export default {
     methods: {
         submit() {
             if(this.$refs.form.validate()) {
-                console.log(this.title, this.content, this.due)
+                const project = {
+                    title: this.title,
+                    content: this.content,
+                    due: this.due,
+                    person: 'Test Samba',
+                    status: 'ongoing',
+                }
+
+                db.collection('projects').add(project).then(() => {
+                    console.log('add to db')
+                })
             }
         }
     }
