@@ -62,7 +62,8 @@ export default {
             ],
             sites: [
                 { icon: 'info', text: 'Wavus Site', url: 'http://www.wavus.co.kr/kr/' },
-                { icon: 'important_devices', text: 'Dev Wavus', url: 'http://dev.wavus.co.kr:12000/' }
+                { icon: 'important_devices', text: 'Dev Wavus', url: 'http://dev.wavus.co.kr:12000/' },
+                { icon: 'important_devices', text: 'ISTD-WRND', url: 'http://121.160.17.89:8080/istd/' }
             ]
         }
     },
