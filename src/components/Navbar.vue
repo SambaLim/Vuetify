@@ -35,6 +35,9 @@
                     </v-avatar>
                     <p class="white--text subheading mt-2" style="text-align:center">WRND</p>
                 </v-flex>
+                <v-flex class="mt-4 mb-3">
+                    <Popup />
+                </v-flex>
             </v-layout>
             <v-list>
                 <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
@@ -51,7 +54,9 @@
 </template>
 
 <script>
+import Popup from './Popup'
 export default {
+    components: { Popup },
     data() {
         return {
             drawer: false,
@@ -63,7 +68,7 @@ export default {
             sites: [
                 { icon: 'info', text: 'Wavus Site', url: 'http://www.wavus.co.kr/kr/' },
                 { icon: 'important_devices', text: 'Dev Wavus', url: 'http://dev.wavus.co.kr:12000/' },
-                { icon: 'important_devices', text: 'ISTD-WRND', url: 'http://121.160.17.89:8080/istd/' }
+                { icon: 'important_devices', text: 'ISTD', url: 'http://121.160.17.89:8080/istd/' }
             ]
         }
     },
