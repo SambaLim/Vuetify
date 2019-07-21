@@ -1,5 +1,10 @@
 <template>
     <nav>
+        <v-snackbar v-model="snackbar" :timeout="4000" top color="success">
+            <span>Awsome! You added a new project.</span>
+            <v-btn flat color="white" @click="snackbar = false">Close</v-btn>
+        </v-snackbar>
+
         <v-toolbar flat app>
             <v-toolbar-side-icon class="grey--text" @click="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title class="text-uppercase grey--text">
@@ -36,7 +41,7 @@
                     <p class="white--text subheading mt-2" style="text-align:center">WRND</p>
                 </v-flex>
                 <v-flex class="mt-4 mb-3">
-                    <Popup />
+                    <Popup @projectAdded="snackbar = true"/>
                 </v-flex>
             </v-layout>
             <v-list>
@@ -69,7 +74,8 @@ export default {
                 { icon: 'info', text: 'Wavus Site', url: 'http://www.wavus.co.kr/kr/' },
                 { icon: 'important_devices', text: 'Dev Wavus', url: 'http://dev.wavus.co.kr:12000/' },
                 { icon: 'important_devices', text: 'ISTD', url: 'http://121.160.17.89:8080/istd/' }
-            ]
+            ],
+            snackbar: false,
         }
     },
     methods: {

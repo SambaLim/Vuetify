@@ -50,7 +50,8 @@ export default {
 
                 db.collection('projects').add(project).then(() => {
                     this.btnLoading = false;
-                    this.dialog = true;
+                    this.dialog = false;
+                    this.$emit('projectAdded');
                 })
             }
         }
