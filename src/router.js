@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Projects from './views/Projects.vue'
 import Team from './views/Team.vue'
+import Exist from './views/tds/Exist.vue'
 
 Vue.use(Router)
 
@@ -27,6 +28,11 @@ export default new Router({
       path: '/team',
       name: 'team',
       component: Team
+    },
+    {
+      path: '/tds/exist',
+      name: 'exist',
+      component: Exist
     }
   ]
 })
