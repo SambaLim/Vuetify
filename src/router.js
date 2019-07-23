@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Projects from './views/Projects.vue'
 import Team from './views/Team.vue'
 import Exist from './views/tds/Exist.vue'
+import Login from './views/chat/Login.vue'
 
 Vue.use(Router)
 
@@ -33,6 +34,11 @@ export default new Router({
       path: '/tds/exist',
       name: 'exist',
       component: Exist
+    },
+    {
+      path: '/chat/login',
+      name: 'login',
+      component: Login
     }
   ]
 })
