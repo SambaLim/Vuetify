@@ -5,6 +5,7 @@ import Projects from './views/Projects.vue'
 import Team from './views/Team.vue'
 import Exist from './views/tds/Exist.vue'
 import Login from './views/chat/Login.vue'
+import ChatRoom from './views/chat/ChatRoom.vue'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ export default new Router({
       path: '/chat/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/chat-room/:username',
+      name: 'chatroom',
+      component: ChatRoom
     }
   ]
 })
