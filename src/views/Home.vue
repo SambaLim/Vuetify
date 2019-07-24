@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import db from '@/fb'
+import db from '@/extensions/fb'
 
 export default {
   data() {

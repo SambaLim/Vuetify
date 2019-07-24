@@ -32,8 +32,9 @@ export default {
         submit: function() {
             if(this.userName.length < 3) return;
 
+            let userName = this.userName;
             // TODO : Router
-            this.$router.push(`/chat-room/${this.userName}`)
+            this.$router.push(`/chat-room/${userName}`);
         }
     }
 }
