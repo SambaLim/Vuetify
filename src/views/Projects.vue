@@ -3,8 +3,14 @@
     <h1 class="subheading grey--text">Projects</h1>
 
     <v-container class="my-5">
-      <div>{{ temperature.vs }}</div>
+      <div>{{ temperature.vs }} ℃</div>
+      <div>{{ temperature.time }}</div>
+      <div>{{ humidity.vs }} %</div>
+      <div>{{ humidity.time }}</div>
       <div>{{ pm25.vs }}</div>
+      <div>{{ pm25.time }}</div>
+      <div>{{ pm10.vs }}</div>
+      <div>{{ pm10.time }}</div>
     </v-container>
   </div>
 </template>
@@ -69,8 +75,14 @@ export default {
           dataArray = this.mqttMsg2DataArray(message);
           if(dataArray[1].n == 'pm25') {
             this.pm25.vs = dataArray[1].vs;
+            this.pm25.time = dataArray[1].t;
+            this.pm10.vs = dataArray[2].vs;
+            this.pm10.time = dataArray[2].t;
           } else {
             this.temperature.vs = dataArray[1].vs;
+            this.temperature.time = dataArray[1].t;
+            this.humidity.vs = dataArray[2].vs;
+            this.humidity.time = dataArray[2].t;
           }
           console.log(this.temperature.vs);
           console.log(dataArray)
