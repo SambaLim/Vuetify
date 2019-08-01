@@ -70,6 +70,7 @@ export default {
       switch(msgNm) {
         case 'movesensor':
           console.log(`detected!`);
+          console.log('Hello');
           break;
         case 'sensor':
           dataArray = this.mqttMsg2DataArray(message);
