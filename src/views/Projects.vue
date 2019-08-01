@@ -61,7 +61,7 @@ export default {
         time: '',
         icon:'sentiment_dissatisfied',
         style: {
-          background: '#493404',
+          background: '#F44336',
           textAlign: 'center',
         }
       },
@@ -70,7 +70,7 @@ export default {
         time: '',
         icon:'sentiment_dissatisfied',
         style: {
-          background: '#4Bd406',
+          background: '#2196F3',
           textAlign: 'center',
         }
       },
@@ -88,11 +88,10 @@ export default {
         time: '',
         icon:'sentiment_dissatisfied',
         style: {
-          background: '#23468A',
+          background: '#4CAF50',
           textAlign: 'center',
         }
       },
-      lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`,
     }
   },
   created: function() {
