@@ -2,15 +2,50 @@
   <div class="projects">
     <h1 class="subheading grey--text">Projects</h1>
 
-    <v-container class="my-5">
-      <div>{{ temperature.vs }} ℃</div>
-      <div>{{ temperature.time }}</div>
-      <div>{{ humidity.vs }} %</div>
-      <div>{{ humidity.time }}</div>
-      <div>{{ pm25.vs }}</div>
-      <div>{{ pm25.time }}</div>
-      <div>{{ pm10.vs }}</div>
-      <div>{{ pm10.time }}</div>
+    <v-container class="my-5"  fluid grid-list-md>
+        <!-- <div>{{ temperature.vs }} ℃</div>
+        <div>{{ temperature.time }}</div>
+        <div>{{ humidity.vs }} %</div>
+        <div>{{ humidity.time }}</div>
+        <div>{{ pm25.vs }}</div>
+        <div>{{ pm25.time }}</div>
+        <div>{{ pm10.vs }}</div>
+        <div>{{ pm10.time }}</div> -->
+        
+      <v-layout wrap>
+        <v-flex d-flex xs12 sm6 md4>
+          <v-card :style='temperature.style' dark>
+            <v-card-title primary class="title">온도</v-card-title>
+            <v-icon style="font-size:10em">{{temperature.icon}}</v-icon>
+            <v-card-text style="font-size:2em">{{ temperature.vs }} ℃</v-card-text>
+          </v-card>
+        </v-flex>
+        <v-flex d-flex xs12 sm6 md4>
+          <v-card :style='humidity.style' dark>
+            <v-card-title primary class="title">습도</v-card-title>
+            <v-icon style="font-size:10em">{{humidity.icon}}</v-icon>
+            <v-card-text style="font-size:2em">{{ humidity.vs }} %</v-card-text>
+          </v-card>
+        </v-flex>
+        <v-flex d-flex xs12 sm6 md4>
+          <v-layout column>
+            <v-flex>
+              <v-card v-bind:style="pm25.style" dark>
+                <v-card-title primary class="title">미세먼지(PM10)</v-card-title>
+                <v-icon style="font-size:4em">{{pm25.icon}}</v-icon>
+                <v-card-text style="font-size:1.5em">{{ pm10.vs }}</v-card-text>
+              </v-card>
+            </v-flex>
+            <v-flex>
+              <v-card v-bind:style='pm10.style' dark>
+                <v-card-title primary class="title">미세먼지(PM2.5)</v-card-title>
+                <v-icon style="font-size:4em">{{pm10.icon}}</v-icon>
+                <v-card-text style="font-size:1.5em">{{ pm25.vs }}</v-card-text>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </v-flex>
+      </v-layout>
     </v-container>
   </div>
 </template>
@@ -24,19 +59,40 @@ export default {
       temperature: {
         vs: '',
         time: '',
+        icon:'sentiment_dissatisfied',
+        style: {
+          background: '#493404',
+          textAlign: 'center',
+        }
       },
       humidity:  {
         vs: '',
         time: '',
+        icon:'sentiment_dissatisfied',
+        style: {
+          background: '#4Bd406',
+          textAlign: 'center',
+        }
       },
       pm25:  {
         vs: '',
         time: '',
+        icon:'sentiment_dissatisfied',
+        style: {
+          background: '#9000A0',
+          textAlign: 'center',
+        }
       },
       pm10:  {
         vs: '',
         time: '',
+        icon:'sentiment_dissatisfied',
+        style: {
+          background: '#23468A',
+          textAlign: 'center',
+        }
       },
+      lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`,
     }
   },
   created: function() {
@@ -59,7 +115,7 @@ export default {
       // Subscribe with Topic
       client.subscribe("sensor");
       client.subscribe("battery-check");
-      client.subscribe("movesensor");
+      //client.subscribe("movesensor");
     },
     onConnectionLost: function() {
       console.log("Connection Lost!");
@@ -104,6 +160,12 @@ export default {
       let jsonMessage= JSON.parse(getMessage);
       return jsonMessage.COLCT_DATA[0];
     }
+  },
+  watch : {
+    temperature : function(val) {
+      //console.log(val)
+    }
   }
+  
 }
 </script>
