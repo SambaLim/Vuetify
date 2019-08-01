@@ -55,6 +55,7 @@ export default {
     },
     mqttOnConnect: function() {
       console.log("Connected!");
+      // Subscribe with Topic
       client.subscribe("sensor");
       client.subscribe("battery-check");
       client.subscribe("movesensor");
