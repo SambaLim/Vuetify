@@ -2,34 +2,49 @@
   <div class="chatroom">
     <h1 class="subheading grey--text">Chatting Room</h1>
     <v-container class="my-5">
-      <v-card>
-        <v-list>
-          <v-list-tile v-for="chat in chats" :key="chat.date" class="my-3">
-            <v-list-tile-action>
-              <v-layout row align-space-between>
-                <v-flex>
-                  <v-icon>person</v-icon>
-                </v-flex>
-                <v-flex>
-                  <span class="caption">{{ chat.name }}</span>
-                </v-flex>
-              </v-layout>
-            </v-list-tile-action>
-            <v-list-tile-content class="pl-4">
-              <v-list-tile-sub-title>
-                <span>{{ date | getYearMonthDay }}</span>
-              </v-list-tile-sub-title>
-              <v-list-tile-title class="heading">
-                <span>{{ chat.content }}</span>
-              </v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
-      </v-card>
+      <v-layout row>
+        <v-flex>
+          <v-card>
+            <v-list>
+              <v-list-tile v-for="chat in chats" :key="chat.date" class="my-3">
+                <v-list-tile-action>
+                  <v-layout row align-space-between>
+                    <v-flex>
+                      <v-icon>person</v-icon>
+                    </v-flex>
+                    <v-flex>
+                      <span class="caption">{{ chat.name }}</span>
+                    </v-flex>
+                  </v-layout>
+                </v-list-tile-action>
+                <v-list-tile-content class="pl-4">
+                  <v-list-tile-sub-title>
+                    <span>{{ date | getYearMonthDay }}</span>
+                  </v-list-tile-sub-title>
+                  <v-list-tile-title class="heading">
+                    <span>{{ chat.content }}</span>
+                  </v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list>
+          </v-card>
+        </v-flex>
+      </v-layout>
+      <v-layout row mt-5>
+        <v-flex xs8 md8 sm8>
+          <v-text-field v-model="msg" placeholder="Please enter your message"></v-text-field>  
+        </v-flex>
+        <v-flex xs2 md10 sm2>
+          <v-btn class="success">Submit</v-btn>  
+        </v-flex>
+      </v-layout>
+      <!--
+      <div style="position:absolute; bottom:0; width:80%;">
+        <v-text-field v-model="msg" placeholder="Please enter your message"></v-text-field>
+        <v-btn class="success">Submit</v-btn>
+      </div>
+      -->
     </v-container>
-    <div style="position:absolute; bottom:0">
-      <v-text-field v-model="msg" placeholder="Please enter your message"></v-text-field>
-    </div>
   </div>
 </template>
 

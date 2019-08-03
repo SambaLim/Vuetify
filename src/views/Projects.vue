@@ -95,7 +95,6 @@ export default {
     }
   },
   created: function() {
-    var that = this;
     // set callback handlers
     client.onConnectionLost = this.onConnectionLost;
     client.onMessageArrived = this.onMessageArrived;
