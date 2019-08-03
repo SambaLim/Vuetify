@@ -38,7 +38,7 @@
       <v-flex xs1>
         <v-layout row>
           <v-flex lg11 xl11 md9 sm9 xs9>
-            <v-text-field v-model="msg" placeholder="Please enter your message"></v-text-field>  
+            <v-text-field id="chatBox" v-model="msg" placeholder="Please enter your message" @keyup.enter="enterMsg"></v-text-field>  
           </v-flex>
           <v-flex lg1 xl1 md2 sm2 xs2>
             <v-btn class="success" @click="enterMsg">Submit</v-btn>  
@@ -50,6 +50,8 @@
 </template>
 
 <script>
+import db from '@/extensions/fb'
+
 export default {
   data() {
     return {
@@ -63,6 +65,9 @@ export default {
   created: function() {
     this.getDate();
   },
+  mounted: function() {
+    document.getElementById('chatBox').focus();
+  },
   methods: {
     getDate: function() {
       let now = new Date();
@@ -74,20 +79,13 @@ export default {
       if(msgLen == 0) return;
 
       let chat = {
-        state: 0,
+        state: '0',
         name: this.userName,
         date: this.getDate(),
         content: this.msg,
       }
       this.chats.push(chat);
       this.msg = '';
-
-      if(this.chats.length > 8) {
-        this.chats.splice(0, 1);
-      }
-
-      // TODO: Focus on Chats, {Enter}
-
     },
   },
   filters: {
