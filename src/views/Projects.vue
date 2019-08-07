@@ -16,14 +16,14 @@
         <v-flex d-flex xs12 sm6 md4>
           <v-card :style='temperature.style' dark>
             <v-card-title primary class="title">온도</v-card-title>
-            <v-icon style="font-size:10em">{{temperature.icon}}</v-icon>
+            <v-icon style="font-size:10em">{{ temperature.icon }}</v-icon>
             <v-card-text style="font-size:2em">{{ temperature.vs }} ℃</v-card-text>
           </v-card>
         </v-flex>
         <v-flex d-flex xs12 sm6 md4>
           <v-card :style='humidity.style' dark>
             <v-card-title primary class="title">습도</v-card-title>
-            <v-icon style="font-size:10em">{{humidity.icon}}</v-icon>
+            <v-icon style="font-size:10em">{{ humidity.icon }}</v-icon>
             <v-card-text style="font-size:2em">{{ humidity.vs }} %</v-card-text>
           </v-card>
         </v-flex>
@@ -32,14 +32,14 @@
             <v-flex>
               <v-card v-bind:style="pm25.style" dark>
                 <v-card-title primary class="title">미세먼지(PM10)</v-card-title>
-                <v-icon style="font-size:4em">{{pm25.icon}}</v-icon>
+                <v-icon style="font-size:4em">{{ pm25.icon }}</v-icon>
                 <v-card-text style="font-size:1.5em">{{ pm10.vs }}</v-card-text>
               </v-card>
             </v-flex>
             <v-flex>
               <v-card v-bind:style='pm10.style' dark>
                 <v-card-title primary class="title">미세먼지(PM2.5)</v-card-title>
-                <v-icon style="font-size:4em">{{pm10.icon}}</v-icon>
+                <v-icon style="font-size:4em">{{ pm10.icon }}</v-icon>
                 <v-card-text style="font-size:1.5em">{{ pm25.vs }}</v-card-text>
               </v-card>
             </v-flex>
@@ -59,7 +59,7 @@ export default {
       temperature: {
         vs: '',
         time: '',
-        icon:'sentiment_dissatisfied',
+        icon:'sentiment_very_satisfied',
         style: {
           background: '#F44336',
           textAlign: 'center',
@@ -68,7 +68,7 @@ export default {
       humidity:  {
         vs: '',
         time: '',
-        icon:'sentiment_dissatisfied',
+        icon:'sentiment_satisfied',
         style: {
           background: '#2196F3',
           textAlign: 'center',
@@ -86,7 +86,7 @@ export default {
       pm10:  {
         vs: '',
         time: '',
-        icon:'sentiment_dissatisfied',
+        icon:'sentiment_very_dissatisfied',
         style: {
           background: '#4CAF50',
           textAlign: 'center',
@@ -110,7 +110,6 @@ export default {
     },
     mqttOnConnect: function() {
       console.log("Connected!");
-      console.log("Hello");
       // Subscribe with Topic
       client.subscribe("sensor");
       client.subscribe("battery-check");
@@ -161,9 +160,6 @@ export default {
     }
   },
   watch : {
-    temperature : function(val) {
-      //console.log(val)
-    }
   }
   
 }
