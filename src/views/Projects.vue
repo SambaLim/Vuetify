@@ -32,25 +32,15 @@
             <v-flex>
               <v-card v-bind:style="pm25.style" dark>
                 <v-card-title primary class="title">미세먼지(PM10)</v-card-title>
-<<<<<<< HEAD
                 <v-icon style="font-size:4em">{{ pm25.icon }}</v-icon>
                 <v-card-text style="font-size:1.5em">{{ pm10.vs }}</v-card-text>
-=======
-                <v-icon style="font-size:4em">{{pm25.icon}}</v-icon>
-                <v-card-text style="font-size:1.5em">{{ pm10.vs }} μg/m³</v-card-text>
->>>>>>> f46d9bf44ce6f5d0b36d3fc870d1ddaa3681679e
               </v-card>
             </v-flex>
             <v-flex>
               <v-card v-bind:style='pm10.style' dark>
                 <v-card-title primary class="title">미세먼지(PM2.5)</v-card-title>
-<<<<<<< HEAD
                 <v-icon style="font-size:4em">{{ pm10.icon }}</v-icon>
                 <v-card-text style="font-size:1.5em">{{ pm25.vs }}</v-card-text>
-=======
-                <v-icon style="font-size:4em">{{pm10.icon}}</v-icon>
-                <v-card-text style="font-size:1.5em">{{ pm25.vs }} μg/m³</v-card-text>
->>>>>>> f46d9bf44ce6f5d0b36d3fc870d1ddaa3681679e
               </v-card>
             </v-flex>
           </v-layout>
