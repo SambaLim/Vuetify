@@ -33,14 +33,14 @@
               <v-card v-bind:style="pm25.style" dark>
                 <v-card-title primary class="title">미세먼지(PM10)</v-card-title>
                 <v-icon style="font-size:4em">{{ pm25.icon }}</v-icon>
-                <v-card-text style="font-size:1.5em">{{ pm10.vs }}</v-card-text>
+                <v-card-text style="font-size:1.5em">{{ pm10.vs }} μm</v-card-text>
               </v-card>
             </v-flex>
             <v-flex>
               <v-card v-bind:style='pm10.style' dark>
-                <v-card-title primary class="title">미세먼지(PM2.5)</v-card-title>
+                <v-card-title primary class="title">초미세먼지(PM2.5)</v-card-title>
                 <v-icon style="font-size:4em">{{ pm10.icon }}</v-icon>
-                <v-card-text style="font-size:1.5em">{{ pm25.vs }}</v-card-text>
+                <v-card-text style="font-size:1.5em">{{ pm25.vs }} μm</v-card-text>
               </v-card>
             </v-flex>
           </v-layout>
@@ -52,6 +52,15 @@
 
 <script>
 import client from '@/extensions/mqtt.js'
+
+const iconVerySatisfied = `sentiment_very_satisfied`;
+const iconSatisfied = `sentiment_satisfied`;
+const iconDisSatisfied = `sentiment_dissatisfied`;
+const iconVeryDisSatisfied = `sentiment_very_dissatisfied`;
+const colorVerySatisfied = `#4CAF50`;
+const colorSatisfied = `#CDDC39`;
+const colorDisSatisfied = `#FBC02D`;
+const colorVeryDisSatisfied = `#F44336`;
 
 export default {
   data() {
@@ -124,31 +133,18 @@ export default {
 
       switch(msgNm) {
         case 'movesensor':
-          console.log(`detected!`);
-          console.log('Hello');
           break;
         case 'sensor':
           dataArray = this.mqttMsg2DataArray(message);
-          if(dataArray[1].n == 'pm25') {
-            this.pm25.vs = dataArray[1].vs;
-            this.pm25.time = dataArray[1].t;
-            this.pm10.vs = dataArray[2].vs;
-            this.pm10.time = dataArray[2].t;
-          } else {
-            this.temperature.vs = dataArray[1].vs;
-            this.temperature.time = dataArray[1].t;
-            this.humidity.vs = dataArray[2].vs;
-            this.humidity.time = dataArray[2].t;
-          }
-          console.log(this.temperature.vs);
-          console.log(dataArray)
+          this.switchSensorDataObj(dataArray);
           break;
         case 'battery-check':
           dataArray = this.mqttMsg2DataArray(message);
-          console.log(dataArray)
+          this.switchSensorDataObj(dataArray);
           break;
         default:
           dataArray = this.mqttMsg2DataArray(message);
+          this.switchSensorDataObj(dataArray);
           break;
       }
     },
@@ -156,10 +152,77 @@ export default {
       let getMessage= message.payloadString;
       let jsonMessage= JSON.parse(getMessage);
       return jsonMessage.COLCT_DATA[0];
+    },
+    switchSensorDataObj: function(dataArray) {
+      let seqName = dataArray[0].bn;
+
+      switch(seqName) {
+        // pm25m, pm10
+        case 'DEVICE_SEQ1':
+          this.switchPM25Data(dataArray[1]);
+          this.switchPM10Data(dataArray[2]);
+          break;
+        // temperature, humidity
+        case 'DEVICE_SEQ2':
+          this.switchTempData(dataArray[1]);
+          this.switchHumData(dataArray[2]);
+          break;
+        default: 
+          alert("New DEVICE Arrived!!!");
+          break;
+      }
+    },
+    switchPM25Data: function(obj) {
+      let value = obj.vs;
+      let con = this.pm25;
+
+      con.vs = obj.vs;
+      con.time = obj.t;
+      this.mappingSensorData(value, con, 75, 35, 15);
+    },
+    switchPM10Data: function(obj) {
+      let value = obj.vs;
+      let con = this.pm10;
+      
+      con.vs = obj.vs;
+      con.time = obj.t;
+      this.mappingSensorData(value, con, 151, 150, 80);
+    },
+    switchTempData: function(obj) {
+      let value = obj.vs;
+      let con = this.temperature;
+      
+      con.vs = obj.vs;
+      con.time = obj.t;
+      this.mappingSensorData(value, con, 30, 27, 25);
+    },
+    switchHumData: function(obj) {
+      let value = obj.vs;
+      let con = this.humidity;
+      
+      con.vs = obj.vs;
+      con.time = obj.t;
+      this.mappingSensorData(value, con, 75, 50, 25);
+    },
+    mappingSensorData: function(value, con, val1, val2, val3) {
+      if(value > val1) {
+        con.icon = iconVeryDisSatisfied;
+        con.style.background = colorVeryDisSatisfied;
+        return;
+      } 
+      if(value > val2) {
+        con.icon = iconDisSatisfied;
+        con.style.background = colorDisSatisfied;
+        return;
+      } 
+      if(value > val3) {
+        con.icon = iconSatisfied;
+        con.style.background = colorSatisfied;
+        return;
+      }
+      con.icon = iconVerySatisfied;
+      con.style.background = colorVerySatisfied;
     }
-  },
-  watch : {
   }
-  
 }
 </script>
